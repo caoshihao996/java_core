@@ -1,6 +1,8 @@
 package person;
 
 
+import java.security.PublicKey;
+
 class Person1{
     private String name;
     private int age;
@@ -11,6 +13,11 @@ class Person1{
     }
     public Person1(){
         System.out.println("创建一个person对象");
+    }
+
+    @Override
+    public String toString() {
+        return this.name+" "+this.age;
     }
 }
 
@@ -29,10 +36,16 @@ class Student extends Person1{
     public Student(String name, int age){
         //this(name,age,"jalidui");
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+ this.school;
+    }
 }
 
 public class JavaDemo {
     public static void main(String args[]){
-        new Student("jack", 45, "jialidui");
+        Student student = new Student("jack", 45, "jialidui");
+        System.out.println(student.toString());
     }
 }
