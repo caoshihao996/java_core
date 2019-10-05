@@ -19,6 +19,21 @@ class Person1{
     public String toString() {
         return this.name+" "+this.age;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Person1)){
+            return false;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(obj == this){
+            return true;
+        }
+        Person1 per = (Person1)obj;
+        return this.name.equals(per.name) && this.age == per.age;
+    }
 }
 
 
@@ -47,5 +62,8 @@ public class JavaDemo {
     public static void main(String args[]){
         Student student = new Student("jack", 45, "jialidui");
         System.out.println(student.toString());
+        Person1 per1 = new Person1("java",50);
+        Person1 per2 = new Person1("java",50);
+        System.out.println(per1.equals(per2));
     }
 }
