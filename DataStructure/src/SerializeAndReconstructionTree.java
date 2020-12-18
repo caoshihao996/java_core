@@ -93,6 +93,7 @@ public class SerializeAndReconstructionTree {
             }
             if(node.right != null){
                 queue.add(node.right);
+
             }
         }
         return head;
