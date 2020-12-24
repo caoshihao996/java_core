@@ -9,8 +9,14 @@ import java.util.Queue;
  */
 public class TreeLayerOrder {
 
-    public static void main(String[] args) {
+    public static class Node1{
+        int value;
+        Node1 left;
+        Node1 right;
 
+        public Node1(int v){
+            value = v;
+        }
     }
 
     public static void level(Node1 head){
