@@ -78,6 +78,7 @@ public class RobotMove {
             dp[cur][rest] = walkCache(N, N-1, rest-1, P, dp);
             return dp[cur][rest];
         }
-        return walkCache(N, cur+1, rest-1, P, dp) + walkCache(N, cur -1, rest -1, P, dp);
+        dp[cur][rest] = walkCache(N, cur+1, rest-1, P, dp) + walkCache(N, cur -1, rest -1, P, dp);
+        return dp[cur][rest];
     }
 }
