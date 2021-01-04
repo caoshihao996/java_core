@@ -1,8 +1,7 @@
 package BinaryTree;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import javax.swing.tree.TreeNode;
+import java.util.*;
 
 /**
  * 实现二叉树的按层遍历
@@ -37,6 +36,76 @@ public class TreeLayerOrder {
                 queue.add(cur.right);
             }
         }
+    }
+
+    public List<List<Integer>> levelOrder(Node1 root){
+        if(root==null){
+            return null;
+        }
+        List<List<Integer>> ans = new LinkedList<>();
+        Queue<Node1> queue = new LinkedList<>();
+        queue.add(root);
+        int sum = 1;//用来保存每一层节点的个数
+        while(!queue.isEmpty()){
+            List<Integer> list = new LinkedList<>();
+            int temp = 0;
+            while(sum>0){
+                Node1 node = queue.poll();
+                list.add(node.value);
+                if(node.left!=null){
+                    queue.add(node.left);
+                    temp++;
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                    temp++;
+                }
+                sum--;
+            }
+            sum = temp;
+            ans.add(list);
+        }
+        return ans;
+    }
+
+    //之字行打印二叉树
+    public List<List<Integer>> levelOrder1(Node1 root){
+        if(root==null){
+            return null;
+        }
+        List<List<Integer>> ans = new LinkedList<>();
+        Queue<Node1> queue = new LinkedList<>();
+        queue.add(root);
+        int sum = 1;//用来保存每一层节点的个数
+        int num = 1;
+        while(!queue.isEmpty()){
+            List<Integer> list = new LinkedList<>();
+            int temp = 0;
+            while(sum>0){
+                Node1 node = queue.poll();
+                list.add(node.value);
+                if(node.left!=null){
+                    queue.add(node.left);
+                    temp++;
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                    temp++;
+                }
+                sum--;
+            }
+            sum = temp;
+            if(num%2==0){
+                for(int i=0,j=list.size()-1;i<j;i++,j--){
+                    int res = list.get(i);
+                    list.set(i, list.get(j));
+                    list.set(j, res);
+                }
+            }
+            num++;
+            ans.add(list);
+        }
+        return ans;
     }
 
     public static int maxWithUseMap(Node1 head){
